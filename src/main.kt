@@ -1,7 +1,11 @@
+import Comportamientos.Describible
+import Comportamientos.Dibujable
 import Figuras.Cuadrado
 import Figuras.Rectangulo
 import Figuras.Triangulo
 fun main (args : Array <String>){
+
+    // Se definen los strings que se imprimirán
     var menu : String = """
         Menu Principal
         ---------------
@@ -18,32 +22,38 @@ fun main (args : Array <String>){
         4. Regresar al menu principal
     """.trimIndent()
 
+    // Estas variables funcionan de control para los ciclos
     var seguir : Boolean = true
     var respuesta : String = ""
+
     while (seguir){
         println(menu)
         respuesta = readLine()!!.toString()
         var seguir1 : Boolean = true
+        //Si el usuario desea dibujar una figura,se imprime el siguiente menu, hasta que decida salir
         if (respuesta == "1"){
             while (seguir1){
+                //Se imprime el segundo menu y se solicita una respuesta
                 println(menuF)
                 respuesta = readLine()!!.toString()
+                //Se evalua su respuesta y para cada caso se instancia un objeto, y se le aplica el metodo pedirDatos y dibujarFigura de
+                // las respectivas interfaces
                 when (respuesta){
                     "1" ->{
                         var cuadrado = Cuadrado()
-                        cuadrado.pedirDatos()
-                        println(cuadrado.dibujar())
+                        pedirDatos(cuadrado)
+                        println(dibujarFigura(cuadrado))
 
                     }
                     "2"->{
                         var rectangulo = Rectangulo()
-                        rectangulo.pedirDatos()
-                        println(rectangulo.dibujar())
+                        pedirDatos(rectangulo)
+                        println(dibujarFigura(rectangulo))
                     }
                     "3"->{
                         var triangulo = Triangulo()
-                        triangulo.pedirDatos()
-                        println(triangulo.dibujar())
+                        pedirDatos(triangulo)
+                        println(dibujarFigura(triangulo))
                     }
                     "4"->seguir1 =false
                 }
@@ -53,4 +63,12 @@ fun main (args : Array <String>){
             seguir = false
         }
     }
+}
+
+//Estas funciones unen los objetos a sus interfaces en la clase principal
+fun dibujarFigura(dibujable: Dibujable): String{
+    return dibujable.dibujar()
+}
+fun pedirDatos(describible: Describible){
+    describible.pedirDatos()
 }
