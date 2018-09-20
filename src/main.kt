@@ -24,7 +24,7 @@ fun main (args : Array <String>){
 
     // Estas variables funcionan de control para los ciclos
     var seguir : Boolean = true
-    var respuesta : String = ""
+    var respuesta : String
 
     while (seguir){
         println(menu)

@@ -8,7 +8,12 @@ class Triangulo: Dibujable, Describible {
 
     override fun pedirDatos() {
         println("Ingrese el alto del triángulo: ")
-        alto = readLine()!!.toInt()
+        try{
+            alto = readLine()!!.toInt()}
+        catch(e:Exception){
+            println("Ese no es un dato valido, por eso, el valor por defecto es 5")
+            alto = 5
+        }
     }
     override fun dibujar(): String {
         var a : String = ""
